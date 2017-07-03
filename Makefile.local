@@ -1,0 +1,28 @@
+# -*- makefile-gmake -*-
+
+###########################
+## Package configuration ##
+###########################
+.PHONY: all detect-bad-students
+
+all: detect-bad-students all-generic
+
+# Please uncomment the following line.
+STUDENTS=uzenat-elouraoui
+
+ifeq ($(strip $(STUDENTS)),)
+detect-bad-students:
+	@echo "		      !! WARNING !!			     "
+	@echo "******************************************************"
+	@echo "* You MUST define the STUDENTS environment variable. *"
+	@echo "* (in the shell or in the Makefile.local)	    *"
+	@echo "******************************************************"
+	@echo "		      !! WARNING !!			     "
+STUDENTS = $(shell echo $$USER)
+endif
+
+VERSION	  = 15.3
+TARGET	  = flap
+TARGETEXT = flap
+PACKAGE	  = flap-$(STUDENTS)-$(VERSION)
+
